@@ -23,6 +23,7 @@ pipeline {
                 //submoduleCfg: [], 
                 userRemoteConfigs: [[url: 'https://github.com/TarasPetryk/Kuber.git']]])
                 sh "echo '<html><body><h1>Build number is ${env.BUILD_ID}</h1></body></html>' > index.html"
+                sh "sed 's/placeholder/${env.BUILD_ID}/' deployment.yaml"
                 //sh 'chmod 666 index.html'
                 //sh 'ls' 
           }
