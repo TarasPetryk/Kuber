@@ -66,6 +66,10 @@ pipeline {
     
     post { 
         always { 
+            withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
+                    //sh 'kubectl apply -f deployment.yaml'
+                    sh "JENKINS_NODE_COOKIE=dontKillMe nohup ./script.sh &"
+                }
             cleanWs()
             //sh 'docker logout'
             sh 'docker system prune -af'
