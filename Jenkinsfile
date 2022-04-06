@@ -45,8 +45,11 @@ pipeline {
         stage('K8s update'){
             steps {
                 //sh "ps aux | grep -i kubectl | grep -v grep | awk {'print $2'} | sudo xargs kill"
-                sh "kubectl apply -f deployment.yaml"
-                sh "nohup sudo -E kubectl port-forward svc/my 80:80 --address='0.0.0.0' &"
+                withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
+                    sh 'kubectl apply -f deployment.yaml'
+                }
+               // sh "kubectl apply -f deployment.yaml"
+                //sh "nohup sudo -E kubectl port-forward svc/my 80:80 --address='0.0.0.0' &"
             }
         }
         
