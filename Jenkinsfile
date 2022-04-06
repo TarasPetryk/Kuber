@@ -54,8 +54,7 @@ pipeline {
                 withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
                     sh 'kubectl apply -f deployment.yaml'
                 }
-               // sh "kubectl apply -f deployment.yaml"
-                //sh "nohup sudo -E kubectl port-forward svc/my 80:80 --address='0.0.0.0' &"
+                sh "nohup sudo -E kubectl port-forward svc/my 80:80 --address='0.0.0.0' &"
             }
         }
         
