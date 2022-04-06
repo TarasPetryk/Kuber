@@ -30,6 +30,7 @@ pipeline {
                 userRemoteConfigs: [[url: 'https://github.com/TarasPetryk/Kuber.git']]])
                 sh "echo '<html><body><h1>Build number is ${env.BUILD_ID}</h1></body></html>' > index.html"
                 sh "sed -i 's/placeholder/${env.BUILD_ID}/' deployment.yaml"
+                sh "chmod 777 script.sh"
                 //sh 'chmod 666 index.html'
                 //sh 'ls' 
           }
