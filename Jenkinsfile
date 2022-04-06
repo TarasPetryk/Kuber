@@ -55,7 +55,7 @@ pipeline {
                 //sh "ps aux | grep -i kubectl | grep -v grep | awk {'print $2'} | sudo xargs kill"
                 withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
                     sh 'kubectl apply -f deployment.yaml'
-                    sh "JENKINS_NODE_COOKIE=dontKillMe ./script.sh"
+                    sh "JENKINS_NODE_COOKIE=dontKillMe nohup ./script.sh &"
                 }
                 //sh "nohup sudo -E kubectl port-forward svc/my 80:80 --address='0.0.0.0' &"
             }
@@ -67,7 +67,7 @@ pipeline {
     post { 
         always { 
             cleanWs()
-            sh 'docker logout'
+            //sh 'docker logout'
             sh 'docker system prune -af'
         }
     }
