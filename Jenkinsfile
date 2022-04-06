@@ -44,7 +44,7 @@ pipeline {
         
         stage('K8s update'){
             steps {
-                sh "ps aux | grep -i kubectl | grep -v grep | awk {'print $2'} | sudo xargs kill"
+                //sh "ps aux | grep -i kubectl | grep -v grep | awk {'print $2'} | sudo xargs kill"
                 sh "kubectl apply -f deployment.yaml"
                 sh "nohup sudo -E kubectl port-forward svc/my 80:80 --address='0.0.0.0' &"
             }
