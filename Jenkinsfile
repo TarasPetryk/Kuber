@@ -15,6 +15,7 @@ pipeline {
                   //      sh 'kubectl apply -f deployment.yaml'
                    // }
                // }
+                sh "sudo pkill kubectl -9"
                 echo "Running ${env.BUILD_ID}"
             }
         }
