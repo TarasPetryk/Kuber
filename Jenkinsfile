@@ -28,7 +28,7 @@ pipeline {
                 //submoduleCfg: [], 
                 userRemoteConfigs: [[url: 'https://github.com/TarasPetryk/Kuber.git']]])
                 sh "echo '<html><body><h1>Build number is ${env.BUILD_ID}</h1></body></html>' > index.html"
-                sh "sed 's/placeholder/${env.BUILD_ID}/' deployment.yaml"
+                sh "sed -i 's/placeholder/${env.BUILD_ID}/' deployment.yaml"
                 //sh 'chmod 666 index.html'
                 //sh 'ls' 
           }
@@ -49,6 +49,7 @@ pipeline {
         
         stage('K8s update'){
             steps {
+                sh "cat deployment.yaml"
                 //sh "ps aux | grep -i kubectl | grep -v grep | awk {'print $2'} | sudo xargs kill"
                 withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
                     sh 'kubectl apply -f deployment.yaml'
