@@ -15,7 +15,7 @@ pipeline {
                   //      sh 'kubectl apply -f deployment.yaml'
                    // }
                // }
-                sh "sudo pkill kubectl -9"
+                //sh "sudo pkill kubectl -9"
                 echo "Running ${env.BUILD_ID}"
             }
         }
@@ -50,7 +50,7 @@ pipeline {
         
         stage('K8s update'){
             steps {
-                sh "pkill kubectl -9"
+                sh "sudo pkill kubectl -9"
                 //sh "ps aux | grep -i kubectl | grep -v grep | awk {'print $2'} | sudo xargs kill"
                 withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
                     sh 'kubectl apply -f deployment.yaml'
