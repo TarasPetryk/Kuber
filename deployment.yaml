@@ -1,19 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: httpd-deployment
+  creationTimestamp: null
+  labels:
+    app: my
+  name: my
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: httpd
-  replicas: 1
+      app: my
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        app: httpd
+        app: my
     spec:
       containers:
-      - name: httpd
-        image: taraspetryk/httpd:placeholder
-        ports:
-        - containerPort: 80
+      - image: taraspetryk/httpd:placeholder
+        name: httpd
+        resources: {}
+status: {}
