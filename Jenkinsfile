@@ -39,7 +39,7 @@ pipeline {
         
         stage('K8s update'){
             steps {
-                sh "sudo pkill kubectl -9"
+                //sh "sudo pkill kubectl -9"
                 withKubeConfig([credentialsId: 'kub-rob', serverUrl: 'https://192.168.49.2:8443']) {
                     sh 'kubectl apply -f deployment.yaml'
                 }
