@@ -6,11 +6,15 @@ metadata:
     app: my
   name: my
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: my
-  strategy: {}
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       creationTimestamp: null
