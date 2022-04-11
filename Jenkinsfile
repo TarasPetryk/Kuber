@@ -19,7 +19,7 @@ pipeline {
               checkout([$class: 'GitSCM', 
                 branches: [[name: '*/main']],
                 userRemoteConfigs: [[url: 'https://github.com/TarasPetryk/Kuber.git']]])
-                sh "echo '<html><body><h1>Build number is ${env.BUILD_ID}</h1></body></html>' > index.html"
+                sh "echo '<html><body><h1>Build number is ${env.BUILD_ID}</h1>' > index.html"
                 sh "sed -i 's/placeholder/${env.BUILD_ID}/' deployment.yaml"
           }
         }
