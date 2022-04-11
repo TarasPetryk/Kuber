@@ -34,6 +34,6 @@ spec:
             name: my-config
         - secretRef:
             name: mysecret
-        command: ['/bin/sh', '-c', 'echo "<h2>Build number is $(SPECIAL_VAR) and secret is $(USER_NAME)</h2></body></html>" >> /usr/local/apache2/htdocs/index.html && sleep infinity']
+        command: ['/bin/sh', '-c', 'echo "<h2>Build number is $(SPECIAL_VAR) and secret is $(USER_NAME)</h2></body></html>" >> /usr/local/apache2/htdocs/index.html && tail -f /dev/null']
         resources: {}
 status: {}
