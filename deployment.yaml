@@ -34,6 +34,6 @@ spec:
             name: my-config
         - secretRef:
             name: mysecret
-        command: ['/bin/sh', '-c', 'sleep infinity']
+        #command: ['/bin/sh', '-c', 'sleep infinity']
         resources: {}
 status: {}
