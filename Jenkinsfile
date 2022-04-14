@@ -11,6 +11,9 @@ pipeline {
         stage ('Test'){
             steps{
                 echo "Running ${env.BUILD_ID}"
+                echo params.branch
+                currentBuild.result = 'SUCCESS'
+                return
             }
         }
         
