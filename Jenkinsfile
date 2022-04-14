@@ -12,17 +12,17 @@ pipeline {
             steps{
                 echo "Running ${env.BUILD_ID}"
                 echo params.branch
-                script {
-                    currentBuild.result = 'ABORTED'
-                    error("Aborting the build.")
-                }
+                //script {
+                  //  currentBuild.result = 'ABORTED'
+                    //error("Aborting the build.")
+               // }
             }
         }
         
         stage('Build') {
             steps {
               checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
+                branches: [[name: params.branch]],
                 userRemoteConfigs: [[url: 'https://github.com/TarasPetryk/Kuber.git']]])
                 sh "echo '<html><body><h1>Build number is ${env.BUILD_ID}</h1>' > index.html"
                 sh "sed -i 's/placeholder/${env.BUILD_ID}/' deployment.yaml"
