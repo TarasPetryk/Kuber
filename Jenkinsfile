@@ -12,8 +12,10 @@ pipeline {
             steps{
                 echo "Running ${env.BUILD_ID}"
                 echo params.branch
-                currentBuild.result = 'SUCCESS'
-                return
+                script {
+                    currentBuild.result = 'ABORTED'
+                    error("Aborting the build.")
+                }
             }
         }
         
